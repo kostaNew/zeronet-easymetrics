@@ -4,6 +4,7 @@ import logging
 import gevent
 import time
 import numpy as np
+import pandas as pd
 from gevent import Greenlet
 from EasyMetricsConfig import easy_metrics_config
 from EasyMetricsWriter import EasyMetricsWriter
@@ -36,14 +37,48 @@ class ActionsPlugin(object):
         while True:
             try:
                 from Site import SiteManager
-                sites = SiteManager.site_manager.list()
-                for site in sorted(sites.values(), lambda a, b: cmp(a.address, b.address)):
-                    time_ = time.time()
-                    peers_connected = len([peer for peer in site.peers.values() if peer.connection and peer.connection.connected])
-                    peers_good = len(site.getConnectablePeers(100))
-                    peers_total = len(site.peers)
-                    new_row = np.array([(time_, peers_connected, peers_good, peers_total)], dtype=self.config.site_data_template)
-                    self.writer.write_site_data(site.address, new_row)
+                sites = SiteManager.site_manager.list().values()
+
+                time_ = time.time()
+
+                time_series = []
+                site_address_series = []
+                peers_connected_series = []
+                peers_good_series = []
+                peers_total_series = []
+                content_count_series = []
+                out_series = []
+                in_series = []
+
+                for site in sites:
+                    site_address     = site.address
+                    peers_connected  = len([peer for peer in site.peers.values() if peer.connection and peer.connection.connected])
+                    peers_good       = len(site.getConnectablePeers(100))
+                    peers_total      = len(site.peers)
+                    content_count    = len(site.content_manager.contents)
+                    out              = int(site.settings.get("bytes_sent", 0))
+                    in_              = int(site.settings.get("bytes_recv", 0))
+
+                    time_series.append(time_)
+                    site_address_series.append(site_address)
+                    peers_connected_series.append(peers_connected)
+                    peers_good_series.append(peers_good)
+                    peers_total_series.append(peers_total)
+                    content_count_series.append(content_count)
+                    out_series.append(out)
+                    in_series.append(in_)
+
+                new_frame = pd.DataFrame(data={'time': time_series,
+                                               'address': site_address_series,
+                                               'peers_connected': peers_connected_series,
+                                               'peers_good': peers_good_series,
+                                               'peers_total': peers_total_series,
+                                               'content_count' :content_count_series,
+                                               'out': out_series,
+                                               'in': in_series})
+
+
+                self.writer.write_site_data(site.address, new_frame)
             except Exception:
                 log.info('The site data information storage round has been FAILED!', exc_info=True)
             else:
