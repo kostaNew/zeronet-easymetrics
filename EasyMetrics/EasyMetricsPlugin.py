@@ -39,7 +39,7 @@ class ActionsPlugin(object):
                 from Site import SiteManager
                 sites = SiteManager.site_manager.list().values()
 
-                time_ = time.time()
+                time_ = time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())
 
                 time_series = []
                 site_address_series = []
@@ -75,7 +75,9 @@ class ActionsPlugin(object):
                                                'peers_total': peers_total_series,
                                                'content_count' :content_count_series,
                                                'out': out_series,
-                                               'in': in_series})
+                                               'in': in_series},
+                                         columns=['time', 'address', 'peers_connected', 'peers_good',
+                                                  'content_count', 'out', 'in'])
 
 
                 self.writer.write_site_data(site.address, new_frame)

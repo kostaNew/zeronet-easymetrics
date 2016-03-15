@@ -7,7 +7,7 @@ class EasyMetricsWriter:
 
     def __init__(self):
         self.config = easy_metrics_config
-        self.directory_name = time.strftime("%Y%m%d_%H%M%S", time.gmtime())
+        self.directory_name = time.strftime("%Y-%m-%d_%H-%M-%S", time.gmtime())
 
         self.is_header_need_set = True
 
