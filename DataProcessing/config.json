@@ -1,14 +1,23 @@
 {
-	"folder": "../DataProcessingExamples/0.0.2",
-	"zite_data": "site.csv",
-	"scope":[
-		{"zite":"1TaLkFrMwvbNsooF4ioKAY9EuxTBTjipT",
-		 "name":"ZEROTALK"},
-		{"zite":"1Apr5ba6u9Nz6eFASmFrefGvyBKkM76QgE",
-		 "name":"RU-ZEROTALK"},
-		{"zite":"1Vp5LH4wegCaqeB72yMw2jgNdVm4aR7ET",
-		 "name":"FR-ZEROTALK"},
-		{"zite":"165eqHdoQfyf7CVGqtVCGNDvMBZhwVSJBL",
-		 "name":"ES-ZEROTALK"}
-	]
+	"general":{"folder": "../DataProcessingExamples/0.0.2", "zite_data": "site.csv"},
+	"tasks": {"peers":         {"module":"peers_per_site"},
+		  "peers_per_site":{"module":"peers_per_site"}},
+	"scopes": {
+		"community":[
+			{"zite":"1TaLkFrMwvbNsooF4ioKAY9EuxTBTjipT", "label":"ZEROTALK"},
+			{"zite":"1Apr5ba6u9Nz6eFASmFrefGvyBKkM76QgE","label":"RU-ZEROTALK"},
+			{"zite":"1Vp5LH4wegCaqeB72yMw2jgNdVm4aR7ET", "label":"FR-ZEROTALK"},
+			{"zite":"165eqHdoQfyf7CVGqtVCGNDvMBZhwVSJBL","label":"ES-ZEROTALK"}
+		],
+		"zeronet":[
+			{"zite":"1TaLkFrMwvbNsooF4ioKAY9EuxTBTjipT", "label":"ZEROTALK"},
+			{"zite":"1HeLLo4uzjaLetFx6NH3PMwFP3qbRbTf3D","label":"ZEROMAIL"},
+			{"zite":"1Name2NXVi1RDPDgf5617UoW7xA6YrhM9F","label":"ZERONAME"},
+			{"zite":"1PLAYgDQboKojowD3kwdb3CtWmWaokXvfp","label":"Play"}
+		],
+		"rus_dev_blog":[
+			{"zite":"1CpGZyfbUBBV5uXUoY653wVoqZFRojbEzd","label":"GomZik"},
+			{"zite":"1FMeSorqAS8Kq5E5XJpGGBJ8Qb2CxXhaYb","label":"kostaNew"}
+		]
+	}
 }

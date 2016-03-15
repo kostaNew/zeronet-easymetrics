@@ -8,13 +8,10 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as md
 import datetime as dt
 
-def main():
-	config = []
-	with open('config.json', 'r') as cf:
-		config = json.load(cf)
+def default(general, task, scope):
 
 	#Read and clean data
-	data = pd.read_csv(os.path.join(config["folder"], config["zite_data"]))
+	data = pd.read_csv(os.path.join(general["folder"], general["zite_data"]))
 	data = clean_additional_header(data)
 	data['time'] = data['time'].astype('float')
 	data['time'] = pd.to_datetime(data['time'], unit='s')
@@ -22,11 +19,12 @@ def main():
 	
 	#Peers by time
 	plot_series = []
-	for el in config['scope']:
+	for el in scope:
 		zite_name = el['zite']
 		temp_ = data[data.address == zite_name][['time','peers_total']].sort_values(by='time')
-		plot_series.append({'time':temp_['time'], 'peers_total':temp_['peers_total'], 'label':el['name']})
-
+		plot_series.append({'time':temp_['time'], 'peers_total':temp_['peers_total'], 'label':el['label']})
+	
+	#Plots
 	fig = plt.figure()
 	ax = plt.subplot(111)
 
@@ -35,7 +33,7 @@ def main():
 	
 	plt.xticks(rotation=15)	
 
-	majorFormatter = matplotlib.dates.DateFormatter('%Y-%m-%d %H:%M:%S')
+	majorFormatter = matplotlib.dates.DateFormatter('%m-%d %H:%M:%S')
 	ax.xaxis.set_major_formatter(majorFormatter)
 	ax.autoscale_view()
 	
@@ -43,8 +41,3 @@ def main():
 		  ncol=3, fancybox=True, shadow=True)
 
 	plt.show()
-	
-
-
-if __name__ == "__main__":
-	main()
