@@ -1,0 +1,14 @@
+{
+	"folder": "../DataProcessingExamples/0.0.2",
+	"zite_data": "site.csv",
+	"scope":[
+		{"zite":"1TaLkFrMwvbNsooF4ioKAY9EuxTBTjipT",
+		 "name":"ZEROTALK"},
+		{"zite":"1Apr5ba6u9Nz6eFASmFrefGvyBKkM76QgE",
+		 "name":"RU-ZEROTALK"},
+		{"zite":"1Vp5LH4wegCaqeB72yMw2jgNdVm4aR7ET",
+		 "name":"FR-ZEROTALK"},
+		{"zite":"165eqHdoQfyf7CVGqtVCGNDvMBZhwVSJBL",
+		 "name":"ES-ZEROTALK"}
+	]
+}
