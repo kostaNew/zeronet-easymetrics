@@ -1,5 +1,6 @@
 import os
 import time
+import json
 import numpy as np
 from EasyMetricsConfig import easy_metrics_config
 
@@ -17,8 +18,14 @@ class EasyMetricsWriter:
         if not os.path.exists(self.data_folder):
             os.makedirs(self.data_folder)
 
-    def write_site_data(self, site_name, new_frame):
-        file = os.path.join(self.data_folder, self.config.site_data_file)
+        params_file = os.path.join(self.data_folder, self.config.params_data_file)
+
+        with open(params_file, 'w') as outfile:
+            json.dump(self.config.__dict__, outfile)
+
+
+    def write_zite_data(self, new_frame):
+        file = os.path.join(self.data_folder, self.config.zite_data_file)
 
         with open(file, "a+") as fl:
            new_frame.to_csv(fl, index=False, header=self.is_header_need_set)
