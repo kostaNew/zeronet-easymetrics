@@ -1,1 +1,0 @@
-{"time_gap": 30, "params_data_file": "params.json", "timestep": 60, "zite_data_file": "zites.csv", "version": "0.0.4", "folder": "metrics", "is_write_zite_data": true}

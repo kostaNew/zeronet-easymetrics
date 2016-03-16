@@ -1,5 +1,5 @@
 {
-	"general":{"folder": "../DataProcessingExamples/0.0.2", "zite_data": "site.csv"},
+	"general":{"folder": "../DataProcessingExamples/2016-03-14_14-30-28", "zite_data": "zites.csv"},
 	"tasks": {"peers":         {"module":"peers_per_site"},
 		  "peers_per_site":{"module":"peers_per_site"}},
 	"scopes": {

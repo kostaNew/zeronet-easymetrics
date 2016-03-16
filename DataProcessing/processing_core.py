@@ -5,4 +5,7 @@ import matplotlib.dates as md
 import datetime as dt
 
 def clean_additional_header(data):
-	return data.drop(data[data.time == 'time'].index)
+	if not data.time.dtype == 'float64':
+		return data.drop(data[data.time == 'time'].index)
+	else: 
+		return data

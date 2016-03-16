@@ -13,8 +13,7 @@ def default(general, task, scope):
 	#Read and clean data
 	data = pd.read_csv(os.path.join(general["folder"], general["zite_data"]))
 	data = clean_additional_header(data)
-	data['time'] = data['time'].astype('float')
-	data['time'] = pd.to_datetime(data['time'], unit='s')
+	data['time'] = pd.to_datetime(data['time'], format="%Y-%m-%d_%H-%M-%S")
 	data['peers_total'] = data['peers_total'].astype('int')
 	
 	#Peers by time
