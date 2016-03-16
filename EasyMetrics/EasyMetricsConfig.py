@@ -4,7 +4,7 @@ class EasyMetricsConfig(object):
 
     def __init__(self):
         # General parameters
-        self.version = "0.0.4"
+        self.version = "0.0.5"
         self.time_gap = 30        # Time before start writing
         self.timestep = 60        # Time between writing
         self.folder = "metrics"

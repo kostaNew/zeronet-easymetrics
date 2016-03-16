@@ -76,7 +76,7 @@ class ActionsPlugin(object):
                                                'content_count' :content_count_series,
                                                'out': out_series,
                                                'in': in_series},
-                                         columns=['time', 'address', 'peers_connected', 'peers_good',
+                                         columns=['time', 'address', 'peers_connected', 'peers_good', 'peers_total',
                                                   'content_count', 'out', 'in'])
 
 
